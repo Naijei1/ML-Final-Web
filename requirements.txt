@@ -2,3 +2,4 @@ seaborn
 scikit-learn
 lightgbm
 hyperopt
+pkg_resources
