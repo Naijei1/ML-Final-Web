@@ -10,17 +10,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import tree
 import streamlit as st
 
-# --- Page Setup ---
 st.set_page_config(page_title="Diabetes Predictor", layout="centered")
 st.title("Diabetes Predictor")
 st.text("INFO 1998: Introduction to Machine Learning – Final Project")
 st.text("This webpage outlines our process for creating a diabetes predictor.")
 
-# --- Load Data ---
 df = pd.read_csv('diabetes.csv')
 original = pd.read_csv('diabetes.csv')
 
-# --- Dataset Overview ---
 st.header("Dataset Overview")
 st.markdown("Source: [Diabetes Dataset on Kaggle](https://www.kaggle.com/datasets/saurabh00007/diabetescsv)")
 st.dataframe(df, use_container_width=True)
@@ -28,7 +25,6 @@ st.dataframe(df, use_container_width=True)
 st.subheader("Statistical Summary")
 st.dataframe(df.describe(), use_container_width=True)
 
-# --- Column Selector ---
 st.header("Column Viewer")
 selected_columns = st.multiselect("Select columns to display", df.columns.tolist())
 
@@ -38,7 +34,6 @@ if selected_columns:
 else:
     st.info("Please select one or more columns to view the data.")
 
-# --- Visualization Section Placeholder ---
 st.header("Data Visualization")
 st.markdown("We can visualize our data to better understand what we are working with.")
 st.markdown("First, we visualize Frequency of Blood Pressure Values with a Positive and Negative Outcome")
@@ -117,7 +112,6 @@ graph.set_title('Frequency of Glucose Values with a Negative Outcome')
 graph.set_xlabel('Glucose')
 graph.set_ylabel('Frequency')
 
-# Display plot in Streamlit
 st.pyplot(fig)
 st.info("Again it seems like we have the same issue as Blood pressure: we will repeat our steps from above")
 pos = df.loc[(df['Outcome'] == 1) & (df['Glucose'] > 0)]
@@ -167,7 +161,6 @@ graph.set_title('Frequency of SkinThickness Values with a Negative Outcome')
 graph.set_xlabel('SkinThickness')
 graph.set_ylabel('Frequency')
 
-# Display plot in Streamlit
 st.pyplot(fig)
 st.warning("I'm pretty sure you cannot have a Skinthickness value of 0 so")
 st.info("Again it seems like we have the same issue as Glucose and Blood pressure: we will repeat our steps from above")
@@ -218,7 +211,6 @@ graph.set_title('Frequency of BMI Values with a Negative Outcome')
 graph.set_xlabel('BMI')
 graph.set_ylabel('Frequency')
 
-# Display plot in Streamlit
 st.pyplot(fig)
 st.info("Again it seems like we have the same issue as Glucose and Blood pressure: we will repeat our steps from above")
 pos = df.loc[(df['Outcome'] == 1) & (df['SkinThickness'] > 0)]
